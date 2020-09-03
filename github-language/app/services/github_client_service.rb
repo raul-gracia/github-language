@@ -2,8 +2,9 @@ class GithubClientService
   include HTTParty
   base_uri 'https://api.github.com'
 
-  def initialize
-    @options = { headers: headers }
+  def initialize(user, token)
+    @auth = { username: user, password: token }
+    @options = { headers: headers, basic_auth: @auth }
   end
 
   def user(username)

@@ -1,25 +1,65 @@
 <div>
-  <nav class="bg-gray-800">
+  <nav class="bg-teal-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <h3 class="text-gray-300 text-lg ">Github User Common Language</h3>
+            <h3 class="text-white text-3xl">Github User Favourite Language</h3>
           </div>
         </div>
       </div>
     </div>
   </nav>
   <header class="bg-white shadow">
-    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold leading-tight text-gray-900">Enter Github Username:</h2>
+    <div class="flex bg-teal-100 justify-center items-center">
+      <h3 class="text-lg font-bold leading-tight text-teal-500">Github Username:</h2>
+      <form>
+        <div class="flex items-center border-b border-teal-500 py-2">
+          <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="raul-gracia" name="username">
+          <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit">
+            Search
+          </button>
+        </div>
+      </form>
     </div>
   </header>
-  <main>
-    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-      <div class="px-4 py-6 sm:px-0">
-        <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>
-      </div>
-    </div>
-  </main>
+  <% if params["username"] %>
+    <% if @user_info %>
+      <main>
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+          <div class="px-4 py-6 sm:px-0 border-4 border-dashed border-teal-200 rounded-lg">
+            <div class="flex items-center justify-center">
+              <img src="<%= @user_info[:user_info]["avatar_url"] %>" alt="" class="w-40 rounded-full mr-8">
+              <div class="flex flex-col justify-center">
+                <h1 class="text-teal-500 text-3xl"><%= @user_info[:user_info]["name"] %></h1>
+                <p><span>Repos: <%= @user_info[:user_info]["public_repos"] %> </span></p>
+              </div>
+            </div>
+            <div class="flex flex-col items-center justify-center mt-8">
+              <h3 class="text-3xl text-teal-500">Favourite Language</h3>
+              <h1 class="text-6xl"><%= @user_info[:languages].first.first %></h1>
+            </div>
+            <div class="mt-8">
+              <h3 class="text-3xl text-teal-500 text-center">Followed by:</h3>
+              <div class="flex justify-evenly mt-4">
+                <% @user_info[:languages][1..3].map(&:first).each do |lang| %>
+                  <h1 class="text-4xl inline-block mr-4"><%= lang %></h1>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    <% else %>
+      <main>
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+          <div class="px-4 py-6 sm:px-0">
+            <div class="border-4 border-dashed border-teal-200 rounded-lg h-96">
+              <h1>No info found for that username :(</h1>
+            </div>
+          </div>
+        </div>
+      </main>
+    <% end %>
+  <% end %>
 </div>

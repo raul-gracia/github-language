@@ -189,6 +189,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
+  concurrent-ruby (~> 1.1, >= 1.1.7)
   httparty (~> 0.18.1)
   jbuilder (~> 2.7)
   listen (~> 3.2)

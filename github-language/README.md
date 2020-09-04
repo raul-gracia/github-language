@@ -15,6 +15,12 @@ GITHUB_USER='username'
 GITHUB_TOKEN='token'
 ```
 
+### Testing
+
+```
+bundle exec rspec
+```
+
 ### UI
 
 ![UI](ui.png)

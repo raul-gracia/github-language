@@ -18,6 +18,9 @@ class FavouriteLanguageService
     languages = languages.map(&:value!)
 
     { user_info: user_info, languages: group_languages(languages) }
+  rescue StandardError => e
+    puts e
+    nil
   end
 
   private
@@ -37,6 +40,6 @@ class FavouriteLanguageService
         languages_tally[name] += lines
       end
     end
-    languages_tally.sort_by { |_k, v| v }.reverse!
+    languages_tally.sort_by { |_k, v| v }.reverse.map(&:first)
   end
 end

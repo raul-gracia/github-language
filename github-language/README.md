@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Dependencies
 
-Things you may want to cover:
+```
+bundle install
+```
 
-* Ruby version
+### Environment Vars
 
-* System dependencies
+Set up the github username and [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 
-* Configuration
+```
+GITHUB_USER='username'
+GITHUB_TOKEN='token'
+```
 
-* Database creation
+### UI
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![UI](ui.png)

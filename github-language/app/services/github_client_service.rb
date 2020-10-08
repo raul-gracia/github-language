@@ -1,29 +1,17 @@
 class GithubClientService
-  include HTTParty
-  base_uri 'https://api.github.com'
-
-  def initialize(user, token)
-    @auth = { username: user, password: token }
-    @options = { headers: headers, basic_auth: @auth }
+  def initialize(_user, token)
+    @client = Octokit::Client.new(access_token: token)
   end
 
   def user(username)
-    self.class.get("/users/#{username}", @options)
+    @client.user(username)
   end
 
   def repos(username)
-    self.class.get("/users/#{username}/repos", @options)
+    @client.repos(username)
   end
 
   def languages(username, repo)
-    self.class.get("/repos/#{username}/#{repo}/languages", @options)
-  end
-
-  private
-
-  def headers
-    {
-      'Accept' => 'application/vnd.github.v3+json'
-    }
+    @client.languages("#{username}/#{repo}")
   end
 end

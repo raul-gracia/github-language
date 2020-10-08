@@ -3,12 +3,9 @@ require 'rails_helper'
 RSpec.describe FavouriteLanguageService do
   describe '#for_user' do
     it 'fetches and returns the user info' do
-      expect_any_instance_of(GithubClientService).to receive(:user).with('raul-gracia').and_return({ username: 'raul-gracia' })
-
       VCR.use_cassette('user_info') do
         data = FavouriteLanguageService.for_user('raul-gracia')
-        expect(data.keys).to include(:user_info)
-        expect(data[:user_info]).to eq({ username: 'raul-gracia' })
+        expect(data[:user_info].to_h).to include(login: 'raul-gracia')
       end
     end
 

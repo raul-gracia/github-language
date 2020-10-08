@@ -19,7 +19,7 @@ VCR.configure do |config|
 
   config.filter_sensitive_data('<TOKEN>') do |interaction|
     auths = interaction.request.headers['Authorization'].first
-    if (match = auths.match(/^Basic\s+([^,\s]+)/))
+    if (match = auths.match(/^token\s+([^,\s]+)/))
       match.captures.first
     end
   end

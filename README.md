@@ -1,5 +1,7 @@
 # README
 
+Rails app to look up a github user's favourite language
+
 ### Dependencies
 
 ```
